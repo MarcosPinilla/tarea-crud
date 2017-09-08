@@ -23,7 +23,7 @@ if(isset($_GET["id"])){
 
   
   $id = $db->escape_string($_GET['id']);
-  $result = $db->query("DELETE * FROM noticias WHERE id_noticia = '$id'");
+  $result = $db->query("DELETE FROM noticias WHERE id_noticia = '$id'");
 
   if(!$result) {
     $_SESSION['error'] = $db->error;
