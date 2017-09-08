@@ -5,7 +5,7 @@ if(!isset($db)) {
 ?>
 
 <?php
-/*
+
 echo "<div class=\"panel panel-success\">
 					 	<div class=\"panel-heading\">
 					 		<h3 class=\"panel-title\">Panel Noticias | Bienvenido ".$_SESSION["user"]."</h3>
@@ -20,4 +20,4 @@ echo "<div class=\"panel panel-success\">
 				}
 				echo "	 	</div>
                      </div>";
-                     */
+                     

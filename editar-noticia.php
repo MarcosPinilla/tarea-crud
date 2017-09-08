@@ -3,8 +3,8 @@ include 'db.php';
 session_start();
 
 if(!isset($_SESSION['usuario'])) {
-	header('Location: ./');
-	die;
+  header('Location: ./');
+  die;
 }
 
 $error = '';
@@ -16,11 +16,23 @@ if(isset($_SESSION['error'])) {
 $usuario = $_SESSION['usuario'];
 
 if(isset($_POST["titulo"]) && isset($_POST["texto"])){
-  // IMPLEMENTAR EDITAR AQUÍ
-	echo "Función no implementada";
-	die;
-}
+  if($usuario["rol"] != 1) {
+    header('Location: welcome.php');
+    die;
+  }
 
+  $titulo = $db->escape_string($_POST['titulo']);
+  $texto = $db->escape_string($_POST['texto']);
+  $id = $db->escape_string($_GET['id']);
+  $result = $db->query("UPDATE noticias SET titulo = '$titulo', texto = '$texto' WHERE id_noticia = '$id' ");
+  
+  if(!$result) {
+    $_SESSION['error'] = $db->error;
+    header('Location: crear-noticia.php');
+  } else {
+    header('Location: welcome.php');
+  }
+}
 ?>
 
 <!DOCTYPE html>
